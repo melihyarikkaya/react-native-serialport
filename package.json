@@ -1,7 +1,6 @@
-
 {
   "name": "react-native-serialport",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,8 +16,8 @@
     "react-native": "^0.41.2"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/melihyarikkaya/react-native-serialport.git"
+    "type": "git",
+    "url": "https://github.com/melihyarikkaya/react-native-serialport.git"
   },
   "homepage": "https://github.com/melihyarikkaya/react-native-serialport.git"
 }
