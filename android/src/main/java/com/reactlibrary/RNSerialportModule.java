@@ -6,6 +6,8 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 
+
+
 public class RNSerialportModule extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
@@ -19,4 +21,5 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
   public String getName() {
     return "RNSerialport";
   }
+
 }

@@ -32,5 +32,5 @@ repositories {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
+    implementation fileTree(dir: 'libs', include: ['usbserial-4.5.2-release.aar'])
 }
-  
