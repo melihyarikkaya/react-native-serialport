@@ -11,14 +11,6 @@
 
 ### Manual installation
 
-
-#### iOS
-
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-serialport` and add `RNSerialport.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libRNSerialport.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
-
 #### Android
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
@@ -34,20 +26,78 @@
       compile project(':react-native-serialport')
   	```
 
-#### Windows
-[Read it! :D](https://github.com/ReactWindows/react-native)
-
-1. In Visual Studio add the `RNSerialport.sln` in `node_modules/react-native-serialport/windows/RNSerialport.sln` folder to their solution, reference from their app.
-2. Open up your `MainPage.cs` app
-  - Add `using Serialport.RNSerialport;` to the usings at the top of the file
-  - Add `new RNSerialportPackage()` to the `List<IReactPackage>` returned by the `Packages` method
-
-
 ## Usage
 ```javascript
-import RNSerialport from 'react-native-serialport';
 
-// TODO: What to do with the module?
+import { RNSerialport } from 'react-native-serialport'
+
+import {DeviceEventEmitter} from 'react-native'
+
+
+onUsbAttached() {
+    this._getDeviceList()
+	}
+	
+  onUsbDetached() {
+    alert('Usb Detached')
+  }
+
+  onUsbNotSupperted() {
+    alert('Usb not supported')
+  }
+  onError(error) {
+    alert('Code: ' + error.errorCode + ' Message: ' +error.errorMessage)
+  }
+
+  onConnectedDevice() {
+    alert('Connected')
+  }
+
+  onDisconnectedDevice() {
+    alert('Disconnected')
+  }
+  onServiceStarted() {
+    alert('Service started')
+  }
+  onServiceStopped() {
+    alert('Service stopped')
+	}
+	
+  componentDidMount() {
+    DeviceEventEmitter.addListener('onServiceStarted', this.onServiceStarted, this)
+    DeviceEventEmitter.addListener('onServiceStopped', this.onServiceStopped,this)
+    DeviceEventEmitter.addListener('onDeviceAttached', this.onUsbAttached, this)
+    DeviceEventEmitter.addListener('onDeviceDetached', this.onUsbDetached, this)
+    DeviceEventEmitter.addListener('onDeviceNotSupported', this.onUsbNotSupperted, this)
+    DeviceEventEmitter.addListener('onError', this.onError, this)
+    DeviceEventEmitter.addListener('onConnected', this.onConnectedDevice, this)
+    DeviceEventEmitter.addListener('onDisconnected', this.onDisconnectedDevice, this)
+  }
+  componentWillMount() {
+		RNSerialport.stopUsbService()
+    DeviceEventEmitter.removeAllListeners()
+  }
+  _getDeviceList() {
+    RNSerialport.getDeviceList((response) => {
+      if(!response.status){
+        alert(response.errorMessage)
+        return;
+			}
+			console.log(response.devices)
+			alert('Device list loaded')
+    })
+  }
+  _connectDevice() {
+    if(this.state.selectedDevice == null || this.state.selectedDevice == undefined) {
+      alert('Please choose device')
+      return;
+    }
+    let baudRate = 9600;
+    RNSerialport.connectDevice(this.state.selectedDevice, 9600)
+  }
+  _disconnetDevice() {
+    RNSerialport.disconnect()
+  }
 RNSerialport;
 ```
   
