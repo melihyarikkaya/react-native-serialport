@@ -10,8 +10,8 @@
     "react-native-serialport",
     "android serialport"
   ],
-  "author": "",
-  "license": "",
+  "author": "Melih YARIKKAYA",
+  "license": "MIT",
   "peerDependencies": {
     "react-native": "^0.41.2"
   },
