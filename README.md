@@ -71,7 +71,6 @@ componentDidMount() {
 componentWillMount() {
     DeviceEventEmitter.removeAllListeners()
 }
-RNSerialport;
 ```
 ### Manuel Connection
 
@@ -131,13 +130,10 @@ _getDeviceList() {
     RNSerialport.connectDevice(deviceName, baudRate)
   })
 }
-
-RNSerialport;
 ```
 
 
 ### Write Port
  ```javascript
  RNSerialport.writeString("HELLO")
- RNSerialport;
 ```
