@@ -116,8 +116,9 @@ declare module "react-native-serialport" {
      *    }
      * })
      */
-    stopUsbService(): void
-
+     stopUsbService(): void    
+     writeBytes(data: []): void
+     writeString(data: String): void
   }
   export var RNSerialport: Serialport;
 }
