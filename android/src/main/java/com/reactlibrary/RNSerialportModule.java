@@ -65,6 +65,7 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
   private static final String onServiceStarted          = "onServiceStarted";
   private static final String onServiceStopped          = "onServiceStopped";
   private static final String onReadDataFromPort        = "onReadDataFromPort";
+  private static final String onUsbPermissionGranted    = "onUsbPermissionGranted";
 
   //Connection Settings
   private int DATA_BIT     = UsbSerialInterface.DATA_BITS_8;
@@ -91,11 +92,8 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
     public void onReceive(Context arg0, Intent arg1) {
       Intent intent;
       switch (arg1.getAction()) {
-        case ACTION_USB_PERMISSION_GRANTED:
+        case ACTION_USB_CONNECT:
           eventEmit(onConnectedEvent, null);
-          break;
-        case ACTION_USB_PERMISSION_NOT_GRANTED:
-          eventEmit(onErrorEvent, createError(definitions.ERROR_USER_DID_NOT_ALLOW_TO_CONNECT, definitions.ERROR_USER_DID_NOT_ALLOW_TO_CONNECT_MESSAGE));
           break;
         case ACTION_USB_DISCONNECTED:
           eventEmit(onDisconnectedEvent, null);
@@ -125,6 +123,12 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
         case ACTION_USB_PERMISSION :
           boolean granted = arg1.getExtras().getBoolean(UsbManager.EXTRA_PERMISSION_GRANTED);
           startConnection(granted);
+          break;
+        case ACTION_USB_PERMISSION_GRANTED:
+          eventEmit(onUsbPermissionGranted, null);
+          break;
+        case ACTION_USB_PERMISSION_NOT_GRANTED:
+          eventEmit(onErrorEvent, createError(definitions.ERROR_USER_DID_NOT_ALLOW_TO_CONNECT, definitions.ERROR_USER_DID_NOT_ALLOW_TO_CONNECT_MESSAGE));
           break;
       }
     }
@@ -432,6 +436,8 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
       serialPort.read(mCallback);
 
       Intent intent = new Intent(ACTION_USB_READY);
+      reactContext.sendBroadcast(intent);
+      intent = new Intent(ACTION_USB_CONNECT);
       reactContext.sendBroadcast(intent);
     }
   }

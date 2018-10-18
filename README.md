@@ -13,6 +13,8 @@
 
 `$ react-native link react-native-serialport`
 
+Change android/build.gradle minSdkVerision: 23
+
 ### Manual installation
 
 #### Android
@@ -29,6 +31,7 @@
   	```
       compile project(':react-native-serialport')
   	```
+4. Change android/build.gradle minSdkVerision: 23
 
 ## Usage
 
