@@ -1,6 +1,8 @@
 
 # react-native-serialport
 
+#### This library is for usb serial port communication on android platformsnpm 
+
 ## Getting started
 
 `$ npm install react-native-serialport --save`
@@ -30,7 +32,7 @@
 
 ### Auto Connection
 
-To open the connection when the service is started or the device is inserted should be looked
+To open the connection when the service is started or the usb device is attached should be looked
 
 ```javascript
 import { RNSerialport } from 'react-native-serialport'
@@ -137,3 +139,20 @@ _getDeviceList() {
  ```javascript
  RNSerialport.writeString("HELLO")
 ```
+## ERRORS
+| CODE |                            MESSAGE                           |
+|:----:|:------------------------------------------------------------:|
+|   1  | Device not found!                                            |
+|   2  | Device name cannot be invalid or empty!                      |
+|   3  | BaudRate cannot be invalid!                                  |
+|   4  | Connection Failed!                                           |
+|   5  | Could not open Serial Port!                                  |
+|   6  | Disconnect Failed!                                           |
+|   7  | Serial Port is already connected                             |
+|   8  | Serial Port is already disconnected                          |
+|   9  | Usb service not started. Please first start Usb service!     |
+|  10  | No device with name {Device name}                            |
+|  11  | User did not allow to connect                                |
+|  12  | Service could not stopped off. Please close connection first |
+|  13  | There is no connection                                       |
+|  14  | Error reading from port                                      |

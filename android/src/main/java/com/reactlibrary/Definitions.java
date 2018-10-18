@@ -8,21 +8,20 @@ public class Definitions {
 
     ////////////////////////// Errors //////////////////////////
 
-    public int ERROR_DEVICE_NOT_FOUND = 1;
-    public int ERROR_DEVICE_READ_FAILED = 2;
-    public int ERROR_CONNECT_DEVICE_NAME_INVALID = 3;
-    public int ERROR_CONNECT_BAUDRATE_EMPTY = 4;
-    public int ERROR_CONNECTION_FAILED = 5;
-    public int ERROR_COULD_NOT_OPEN_SERIALPORT = 6;
-    public int ERROR_DISCONNECT_FAILED = 7;
-    public int ERROR_SERIALPORT_ALREADY_CONNECTED = 8;
-    public int ERROR_SERIALPORT_ALREADY_DISCONNECTED = 9;
-    public int ERROR_USB_SERVICE_NOT_STARTED = 10;
-    public int ERROR_X_DEVICE_NOT_FOUND = 11;
-    public int ERROR_USER_DID_NOT_ALLOW_TO_CONNECT = 12;
-    public int ERROR_SERVICE_STOP_FAILED = 13;
-    public int ERROR_THERE_IS_NO_CONNECTION = 14;
-    public int ERROR_NOT_READED_DATA = 15;
+    public int ERROR_DEVICE_NOT_FOUND                       = 1;
+    public int ERROR_CONNECT_DEVICE_NAME_INVALID            = 2;
+    public int ERROR_CONNECT_BAUDRATE_EMPTY                 = 3;
+    public int ERROR_CONNECTION_FAILED                      = 4;
+    public int ERROR_COULD_NOT_OPEN_SERIALPORT              = 5;
+    public int ERROR_DISCONNECT_FAILED                      = 6;
+    public int ERROR_SERIALPORT_ALREADY_CONNECTED           = 7;
+    public int ERROR_SERIALPORT_ALREADY_DISCONNECTED        = 8;
+    public int ERROR_USB_SERVICE_NOT_STARTED                = 9;
+    public int ERROR_X_DEVICE_NOT_FOUND                     = 10;
+    public int ERROR_USER_DID_NOT_ALLOW_TO_CONNECT          = 11;
+    public int ERROR_SERVICE_STOP_FAILED                    = 12;
+    public int ERROR_THERE_IS_NO_CONNECTION                 = 13;
+    public int ERROR_NOT_READED_DATA                        = 14;
 
 
     public static final String ERROR_DEVICE_NOT_FOUND_MESSAGE = "Device not found!";
