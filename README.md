@@ -158,3 +158,22 @@ _getDeviceList() {
 |  12  | Service could not stopped off. Please close connection first |
 |  13  | There is no connection                                       |
 |  14  | Error reading from port                                      |
+
+## ALL VOIDS
+
+| VOID                                             | DESCRIPTION                                                              |
+|--------------------------------------------------|--------------------------------------------------------------------------|
+| setDataBit(dataBit: int)                         | To set the data bit                                                      |
+| setStopBit(stopBit: int)                         | To set the stop bit                                                      |
+| setParity(parity: int)                           | To set the parity                                                        |
+| setFlowControl(flowControl: int)                 | To set the flow control                                                  |
+| loadDefaultConnectionSetting()                   | Loads default connection settings (DATABIT, STOPBIT,PARITY, FLOWCONTROL) |
+| setAutoConnectBaudRate(baudRate: int)            | Changes the Baud Rate used in auto-connection                            |
+| setAutoConnect(state: boolean)                   | Turns automatic connection on or off                                     |
+| startUsbService()                                | Starts the service and broadcast receivers                               |
+| stopUsbService()                                 | Stops the service and broadcast receivers                                |
+| getDeviceList(callback: void)                    | Receives device list                                                     |
+| connectDevice(deviceName: string, baudRate: int) | Used for manual connection                                               |
+| disconnect()                                     | Used to break the connection.                                            |
+| isOpen(callback: void)                           | Receives connection status                                               |
+| writeString(data: string)                        | Writes data to serial port                                               |

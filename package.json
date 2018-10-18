@@ -1,6 +1,6 @@
 {
   "name": "react-native-serialport",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "This library is for usb serial port communication on android platforms",
   "main": "index.js",
   "scripts": {
