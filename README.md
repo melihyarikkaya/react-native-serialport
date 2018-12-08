@@ -180,3 +180,6 @@ _getDeviceList() {
 | disconnect()                                     | Used to break the connection.                                            |
 | isOpen(callback: void)                           | Receives connection status                                               |
 | writeString(data: string)                        | Writes data to serial port                                               |
+
+### Java Package Name
+#### com.melihyarikkaya.rnserialport
