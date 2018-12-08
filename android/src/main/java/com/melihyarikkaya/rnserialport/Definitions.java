@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.melihyarikkaya.rnserialport;
 
 /**
  * Created by melih on 12.10.2018.

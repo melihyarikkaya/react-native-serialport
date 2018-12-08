@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.melihyarikkaya.rnserialport;
 
 import android.app.PendingIntent;
 
@@ -52,8 +52,8 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
   private static final String ACTION_USB_DISCONNECTED = "com.felhr.usbservice.USB_DISCONNECTED";
   private static final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
   private int BAUD_RATE = 9600;
-  private static final String ACTION_USB_NOT_OPENED = "com.reactlibrary.USB_NOT_OPENED";
-  private static final String ACTION_USB_CONNECT = "com.reactlibrary.USB_CONNECT";
+  private static final String ACTION_USB_NOT_OPENED = "com.melihyarikkaya.rnserialport.USB_NOT_OPENED";
+  private static final String ACTION_USB_CONNECT = "com.melihyarikkaya.rnserialport.USB_CONNECT";
 
   //react-native events
   private static final String onErrorEvent              = "onError";
