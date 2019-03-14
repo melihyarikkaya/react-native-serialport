@@ -1,4 +1,8 @@
-const Definitions = {
+import { NativeModules } from 'react-native';
+
+const { RNSerialport } = NativeModules;
+
+const definitions = {
   DATA_BITS :{
     DATA_BITS_5: 5,
     DATA_BITS_6: 6,
@@ -22,10 +26,23 @@ const Definitions = {
     FLOW_CONTROL_RTS_CTS : 1,
     FLOW_CONTROL_DSR_DTR : 2,
     FLOW_CONTROL_XON_XOFF: 3
+  },
+  RETURNED_DATA_TYPES: {
+    INTARRAY : 1,
+    HEXSTRING: 2
   }
-}
-import { NativeModules } from 'react-native';
+};
 
-const { RNSerialport } = NativeModules;
+const actions = {
+  ON_SERVICE_STARTED      : 'onServiceStarted',
+  ON_SERVICE_STOPPED      : 'onServiceStopped',
+  ON_DEVICE_ATTACHED      : 'onDeviceAttached',
+  ON_DEVICE_DETACHED      : 'onDeviceDetached',
+  ON_DEVICE_NOT_SUPPORTED : 'onDeviceNotSupported',
+  ON_ERROR                : 'onError',
+  ON_CONNECTED            : 'onConnected',
+  ON_DISCONNECTED         : 'onDisconnected',
+  ON_READ_DATA            : 'onReadDataFromPort'
+};
 
-export { RNSerialport, Definitions }
+export { RNSerialport, definitions, actions };
