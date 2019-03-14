@@ -31,6 +31,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.facebook.react:react-native:+'
+    implementation 'com.google.guava:guava:20.0'
+    implementation 'com.facebook.react:react-native:+'
     implementation fileTree(dir: 'libs', include: ['usbserial-4.5.2-release.aar'])
 }

@@ -24,22 +24,25 @@ public class Definitions {
     public int ERROR_NOT_READED_DATA                        = 14;
 
 
-    public static final String ERROR_DEVICE_NOT_FOUND_MESSAGE = "Device not found!";
-    public static final String ERROR_CONNECT_DEVICE_NAME_INVALID_MESSAGE = "Device name cannot be invalid or empty!";
-    public static final String ERROR_CONNECT_BAUDRATE_EMPTY_MESSAGE = "BaudRate cannot be invalid!";
-    public static final String ERROR_CONNECTION_FAILED_MESSAGE =  "Connection Failed!";
-    public static final String ERROR_COULD_NOT_OPEN_SERIALPORT_MESSAGE = "Could not open Serial Port!";
-    public static final String ERROR_DISCONNECT_FAILED_MESSAGE = "Disconnect Failed!";
-    public static final String ERROR_SERIALPORT_ALREADY_CONNECTED_MESSAGE = "Serial Port is already connected";
-    public static final String ERROR_SERIALPORT_ALREADY_DISCONNECTED_MESSAGE = "Serial Port is already disconnected";
-    public static final String ERROR_USB_SERVICE_NOT_STARTED_MESSAGE = "Usb service not started. Please first start Usb service!";
-    public static final String ERROR_X_DEVICE_NOT_FOUND_MESSAGE = "No device with name ";
-    public static final String ERROR_USER_DID_NOT_ALLOW_TO_CONNECT_MESSAGE = "User did not allow to connect";
-    public static final String ERROR_SERVICE_STOP_FAILED_MESSAGE = "Service could not stopped off. Please close connection first";
-    public static final String ERROR_THERE_IS_NO_CONNECTION_MESSAGE = "There is no connection";
-    public static final String ERROR_NOT_READED_DATA_MESSAGE = "Error reading from port ";
+    public static final String ERROR_DEVICE_NOT_FOUND_MESSAGE                   = "Device not found!";
+    public static final String ERROR_CONNECT_DEVICE_NAME_INVALID_MESSAGE        = "Device name cannot be invalid or empty!";
+    public static final String ERROR_CONNECT_BAUDRATE_EMPTY_MESSAGE             = "BaudRate cannot be invalid!";
+    public static final String ERROR_CONNECTION_FAILED_MESSAGE                  = "Connection Failed!";
+    public static final String ERROR_COULD_NOT_OPEN_SERIALPORT_MESSAGE          = "Could not open Serial Port!";
+    public static final String ERROR_DISCONNECT_FAILED_MESSAGE                  = "Disconnect Failed!";
+    public static final String ERROR_SERIALPORT_ALREADY_CONNECTED_MESSAGE       = "Serial Port is already connected";
+    public static final String ERROR_SERIALPORT_ALREADY_DISCONNECTED_MESSAGE    = "Serial Port is already disconnected";
+    public static final String ERROR_USB_SERVICE_NOT_STARTED_MESSAGE            = "Usb service not started. Please first start Usb service!";
+    public static final String ERROR_X_DEVICE_NOT_FOUND_MESSAGE                 = "No device with name ";
+    public static final String ERROR_USER_DID_NOT_ALLOW_TO_CONNECT_MESSAGE      = "User did not allow to connect";
+    public static final String ERROR_SERVICE_STOP_FAILED_MESSAGE                = "Service could not stopped off. Please close connection first";
+    public static final String ERROR_THERE_IS_NO_CONNECTION_MESSAGE             = "There is no connection";
+    public static final String ERROR_NOT_READED_DATA_MESSAGE                    = "Error reading from port";
 
     ///////////////////////////////////////////////////////////
+
+    public static final int RETURNED_DATA_TYPE_INTARRAY = 1;
+    public static final int RETURNED_DATA_TYPE_HEXSTRING = 2;
 
     private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
 

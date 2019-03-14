@@ -13,11 +13,9 @@
 
 `$ react-native link react-native-serialport`
 
-Change android/build.gradle minSdkVerision: 23
-
 ### Manual installation
 
-#### Android
+### Android
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
   - Add `import com.reactlibrary.RNSerialportPackage;` to the imports at the top of the file
@@ -40,13 +38,13 @@ Change android/build.gradle minSdkVerision: 23
 To open the connection when the service is started or the usb device is attached should be looked
 
 ```javascript
-import { RNSerialport } from 'react-native-serialport'
+import {RNSerialport, actions, definitions} from 'react-native-serialport';
 import {DeviceEventEmitter} from 'react-native'
   .
   .
   .
   .
-onUsbAttached() { //this._getDeviceList() }
+onUsbAttached() { /*this._getDeviceList()*/ }
 onUsbDetached() {alert('Usb Detached')}
 onUsbNotSupperted() {alert('Usb not supported')}
 onError(error) {alert('Code: ' + error.errorCode + ' Message: ' +error.errorMessage)}
@@ -55,20 +53,23 @@ onDisconnectedDevice() {alert('Disconnected')}
 onServiceStarted() {alert('Service started')}
 onServiceStopped() {alert('Service stopped')}
 onReadData(data) {
-  alert(data) //string
+  alert(data.payload)
 }
 componentDidMount() {
-  DeviceEventEmitter.addListener('onServiceStarted', this.onServiceStarted, this)
-  DeviceEventEmitter.addListener('onServiceStopped', this.onServiceStopped,this)
-  DeviceEventEmitter.addListener('onDeviceAttached', this.onUsbAttached, this)
-  DeviceEventEmitter.addListener('onDeviceDetached', this.onUsbDetached, this)
-  DeviceEventEmitter.addListener('onDeviceNotSupported', this.onUsbNotSupperted, this)
-  DeviceEventEmitter.addListener('onError', this.onError, this)
-  DeviceEventEmitter.addListener('onConnected', this.onConnectedDevice, this)
-  DeviceEventEmitter.addListener('onDisconnected', this.onDisconnectedDevice, this)
-  DeviceEventEmitter.addListener('onReadDataFromPort', this.onReadData, this)
+  DeviceEventEmitter.addListener(actions.ON_SERVICE_STARTED, this.onServiceStarted, this)
+  DeviceEventEmitter.addListener(actions.ON_SERVICE_STOPPED, this.onServiceStopped, this)
+  DeviceEventEmitter.addListener(actions.ON_DEVICE_ATTACHED, this.onUsbAttached, this)
+  DeviceEventEmitter.addListener(actions.ON_DEVICE_DETACHED, this.onUsbDetached, this)
+  DeviceEventEmitter.addListener(actions.ON_DEVICE_NOT_SUPPORTED, this.onUsbNotSupported, this)
+  DeviceEventEmitter.addListener(actions.ON_ERROR, this.onError, this)
+  DeviceEventEmitter.addListener(actions.ON_CONNECTED, this.onConnectedDevice, this)
+  DeviceEventEmitter.addListener(actions.ON_DISCONNECTED, this.onDisconnectedDevice, this)
+  DeviceEventEmitter.addListener(actions.ON_READ_DATA, this.onReadData, this)
 
   //Added listeners
+  RNSerialport.setInterface(-1); //default -1
+  RNSerialport.setReturnedDataType(definitions.RETURNED_DATA_TYPES.INTARRAY); // default INT ARRAY
+  RNSerialport.setReturnedDataType(definitions.RETURNED_DATA_TYPES.HEXSTRING);
 
   RNSerialport.setAutoConnectBaudRate(9600)
   RNSerialport.setAutoConnect(true)
@@ -83,13 +84,13 @@ componentWillMount() {
 
 ```javascript
 
-import { RNSerialport } from 'react-native-serialport'
+import {RNSerialport, actions, definitions} from 'react-native-serialport';
 import {DeviceEventEmitter} from 'react-native'
   .
   .
   .
   .
-onUsbAttached() { //this._getDeviceList() }
+onUsbAttached() { /*this._getDeviceList()*/ }
 onUsbDetached() {alert('Usb Detached')}
 onUsbNotSupperted() {alert('Usb not supported')}
 onError(error) {alert('Code: ' + error.errorCode + ' Message: ' +error.errorMessage)}
@@ -101,21 +102,25 @@ onServiceStarted() {
 }
 onServiceStopped() {alert('Service stopped')}
 onReadData(data) {
-  alert(data) //string
+  alert(data.payload)
 }
 
 componentDidMount() {
-  DeviceEventEmitter.addListener('onServiceStarted', this.onServiceStarted, this)
-  DeviceEventEmitter.addListener('onServiceStopped', this.onServiceStopped,this)
-  DeviceEventEmitter.addListener('onDeviceAttached', this.onUsbAttached, this)
-  DeviceEventEmitter.addListener('onDeviceDetached', this.onUsbDetached, this)
-  DeviceEventEmitter.addListener('onDeviceNotSupported', this.onUsbNotSupperted, this)
-  DeviceEventEmitter.addListener('onError', this.onError, this)
-  DeviceEventEmitter.addListener('onConnected', this.onConnectedDevice, this)
-  DeviceEventEmitter.addListener('onDisconnected', this.onDisconnectedDevice, this)
-  DeviceEventEmitter.addListener('onReadDataFromPort', this.onReadData, this)
+  DeviceEventEmitter.addListener(actions.ON_SERVICE_STARTED, this.onServiceStarted, this)
+  DeviceEventEmitter.addListener(actions.ON_SERVICE_STOPPED, this.onServiceStopped, this)
+  DeviceEventEmitter.addListener(actions.ON_DEVICE_ATTACHED, this.onUsbAttached, this)
+  DeviceEventEmitter.addListener(actions.ON_DEVICE_DETACHED, this.onUsbDetached, this)
+  DeviceEventEmitter.addListener(actions.ON_DEVICE_NOT_SUPPORTED, this.onUsbNotSupported, this)
+  DeviceEventEmitter.addListener(actions.ON_ERROR, this.onError, this)
+  DeviceEventEmitter.addListener(actions.ON_CONNECTED, this.onConnectedDevice, this)
+  DeviceEventEmitter.addListener(actions.ON_DISCONNECTED, this.onDisconnectedDevice, this)
+  DeviceEventEmitter.addListener(actions.ON_READ_DATA, this.onReadData, this)
 
   //Added listeners
+  RNSerialport.setInterface(-1); //default -1
+  RNSerialport.setReturnedDataType(definitions.RETURNED_DATA_TYPES.INTARRAY); // default INT ARRAY
+  RNSerialport.setReturnedDataType(definitions.RETURNED_DATA_TYPES.HEXSTRING);
+  
   RNSerialport.setAutoConnect(false)
   RNSerialport.startUsbService()
 }
@@ -139,12 +144,24 @@ _getDeviceList() {
 }
 ```
 
-
-### Write Port
+### For Write Port
  ```javascript
  RNSerialport.writeString("HELLO")
+ RNSerialport.writeBase64("SEVMTE8=")
 ```
-## ERRORS
+### DEFAULT DEFINITIONS
+| KEY                    | VALUE                                    |
+|------------------------|------------------------------------------|
+| RETURNED DATA TYPE     | INT ARRAY (Options: INTARRAY, HEXSTRING) |
+| BAUND RATE             | 9600                                     |
+| AUTO CONNECT BAUD RATE | 9600                                     |
+| PORT INTERFACE         | -1                                       |
+| DATA BIT               | 8                                        |
+| STOP BIT               | 1                                        |
+| PARITY                 | NONE                                     |
+| FLOW CONTROL           | OFF                                      |
+
+### ERRORS
 | CODE |                            MESSAGE                           |
 |:----:|:------------------------------------------------------------:|
 |   1  | Device not found!                                            |
@@ -162,10 +179,12 @@ _getDeviceList() {
 |  13  | There is no connection                                       |
 |  14  | Error reading from port                                      |
 
-## ALL VOIDS
+### ALL VOIDS
 
 | VOID                                             | DESCRIPTION                                                              |
 |--------------------------------------------------|--------------------------------------------------------------------------|
+| setReturnedDataType(dataType: int)               | To set the returned data type int array or hex string                    |
+| setInterface(interface: int)                     | To set the device interface                                              |
 | setDataBit(dataBit: int)                         | To set the data bit                                                      |
 | setStopBit(stopBit: int)                         | To set the stop bit                                                      |
 | setParity(parity: int)                           | To set the parity                                                        |
@@ -180,6 +199,7 @@ _getDeviceList() {
 | disconnect()                                     | Used to break the connection.                                            |
 | isOpen(callback: void)                           | Receives connection status                                               |
 | writeString(data: string)                        | Writes data to serial port                                               |
+| writeBase64(data: string)                        | Writes Base64 to serial port                                             |
 
 ### Java Package Name
 #### com.melihyarikkaya.rnserialport
