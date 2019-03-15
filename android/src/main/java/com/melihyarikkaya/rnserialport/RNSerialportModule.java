@@ -120,6 +120,7 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
           break;
         case ACTION_USB_DETACHED:
           if(serialPortConnected) {
+            eventEmit(onDeviceDetachedEvent, null);
             stopConnection();
           } else {
             eventEmit(onDeviceDetachedEvent, null);
