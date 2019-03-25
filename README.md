@@ -145,7 +145,7 @@ _getDeviceList() {
 ```
 
 ### For Write Port
- ```javascript
+```javascript
  RNSerialport.writeString("HELLO")
  RNSerialport.writeBase64("SEVMTE8=")
 ```
