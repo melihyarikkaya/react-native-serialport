@@ -27,7 +27,7 @@ interface RNSerialportStatic {
    * Returns connection status
    * @returns boolean
    */
-  isOpen(callback: (status: boolean) => void)
+  isOpen(callback: (status: boolean) => void) : void
 
   //Begin setter methods
 
@@ -81,7 +81,7 @@ interface RNSerialportStatic {
   /**
    * Get the device list
    */
-  getDeviceList(callback: (response: GetDeviceListResponse<any>) => void);
+  getDeviceList(callback: (response: GetDeviceListResponse<any>) => void) : void;
 
   /**
    * Connect to device with device name and baud rate

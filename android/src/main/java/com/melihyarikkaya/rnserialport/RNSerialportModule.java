@@ -18,9 +18,6 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.bridge.WritableNativeArray;
 
 import android.util.Base64;
-
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -384,26 +381,6 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
 
     byte [] data = Base64.decode(message, Base64.DEFAULT);
     serialPort.write(data);
-  }
-
-  @ReactMethod
-  public void writeIntArray(int[] message) {
-    if(!usbServiceStarted){
-      eventEmit(onErrorEvent, createError(definitions.ERROR_USB_SERVICE_NOT_STARTED, definitions.ERROR_USB_SERVICE_NOT_STARTED_MESSAGE));
-      return;
-    }
-    if(!serialPortConnected || serialPort == null) {
-      eventEmit(onErrorEvent, createError(definitions.ERROR_THERE_IS_NO_CONNECTION, definitions.ERROR_THERE_IS_NO_CONNECTION_MESSAGE));
-      return;
-    }
-
-    ByteBuffer byteBuffer = ByteBuffer.allocate(message.length * 4);
-    IntBuffer intBuffer = byteBuffer.asIntBuffer();
-    intBuffer.put(message);
-
-    byte[] bytes = byteBuffer.array();
-
-    serialPort.write(bytes);
   }
 
   ///////////////////////////////////////////////USB SERVICE /////////////////////////////////////////////////////////
