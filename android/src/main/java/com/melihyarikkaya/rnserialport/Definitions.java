@@ -35,7 +35,7 @@ public class Definitions {
     public static final String ERROR_USB_SERVICE_NOT_STARTED_MESSAGE            = "Usb service not started. Please first start Usb service!";
     public static final String ERROR_X_DEVICE_NOT_FOUND_MESSAGE                 = "No device with name ";
     public static final String ERROR_USER_DID_NOT_ALLOW_TO_CONNECT_MESSAGE      = "User did not allow to connect";
-    public static final String ERROR_SERVICE_STOP_FAILED_MESSAGE                = "Service could not stopped off. Please close connection first";
+    public static final String ERROR_SERVICE_STOP_FAILED_MESSAGE                = "Service could not stopped. Please first close connection";
     public static final String ERROR_THERE_IS_NO_CONNECTION_MESSAGE             = "There is no connection";
     public static final String ERROR_NOT_READED_DATA_MESSAGE                    = "Error reading from port";
 

@@ -45,4 +45,4 @@ const actions = {
   ON_READ_DATA            : 'onReadDataFromPort'
 };
 
-export { RNSerialport, definitions, actions };
+module.exports = { RNSerialport, definitions, actions };

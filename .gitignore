@@ -33,6 +33,9 @@ project.xcworkspace
       
 
 # Android/IntelliJ
+android/.classpath
+android/.project
+android/.settings
 #
 build/
 .idea

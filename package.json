@@ -20,5 +20,6 @@
     "type": "git",
     "url": "https://github.com/melihyarikkaya/react-native-serialport.git"
   },
-  "homepage": "https://github.com/melihyarikkaya/react-native-serialport.git"
+  "homepage": "https://github.com/melihyarikkaya/react-native-serialport.git",
+  "types": "./types/index.d.ts"
 }
