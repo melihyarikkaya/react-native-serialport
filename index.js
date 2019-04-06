@@ -30,6 +30,14 @@ const definitions = {
   RETURNED_DATA_TYPES: {
     INTARRAY : 1,
     HEXSTRING: 2
+  },
+  DRIVER_TYPES: {
+    AUTO    : "AUTO",
+    CDC     : "cdc",
+    CH34x   : "ch34x",
+    CP210x  : "cp210x",
+    FTDI    : "ftdi",
+    PL2303  : "pl2303"
   }
 };
 

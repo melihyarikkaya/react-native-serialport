@@ -8,20 +8,21 @@ public class Definitions {
 
     ////////////////////////// Errors //////////////////////////
 
-    public int ERROR_DEVICE_NOT_FOUND                       = 1;
-    public int ERROR_CONNECT_DEVICE_NAME_INVALID            = 2;
-    public int ERROR_CONNECT_BAUDRATE_EMPTY                 = 3;
-    public int ERROR_CONNECTION_FAILED                      = 4;
-    public int ERROR_COULD_NOT_OPEN_SERIALPORT              = 5;
-    public int ERROR_DISCONNECT_FAILED                      = 6;
-    public int ERROR_SERIALPORT_ALREADY_CONNECTED           = 7;
-    public int ERROR_SERIALPORT_ALREADY_DISCONNECTED        = 8;
-    public int ERROR_USB_SERVICE_NOT_STARTED                = 9;
-    public int ERROR_X_DEVICE_NOT_FOUND                     = 10;
-    public int ERROR_USER_DID_NOT_ALLOW_TO_CONNECT          = 11;
-    public int ERROR_SERVICE_STOP_FAILED                    = 12;
-    public int ERROR_THERE_IS_NO_CONNECTION                 = 13;
-    public int ERROR_NOT_READED_DATA                        = 14;
+    public static final int ERROR_DEVICE_NOT_FOUND                = 1;
+    public static final int ERROR_CONNECT_DEVICE_NAME_INVALID     = 2;
+    public static final int ERROR_CONNECT_BAUDRATE_EMPTY          = 3;
+    public static final int ERROR_CONNECTION_FAILED               = 4;
+    public static final int ERROR_COULD_NOT_OPEN_SERIALPORT       = 5;
+    public static final int ERROR_DISCONNECT_FAILED               = 6;
+    public static final int ERROR_SERIALPORT_ALREADY_CONNECTED    = 7;
+    public static final int ERROR_SERIALPORT_ALREADY_DISCONNECTED = 8;
+    public static final int ERROR_USB_SERVICE_NOT_STARTED         = 9;
+    public static final int ERROR_X_DEVICE_NOT_FOUND              = 10;
+    public static final int ERROR_USER_DID_NOT_ALLOW_TO_CONNECT   = 11;
+    public static final int ERROR_SERVICE_STOP_FAILED             = 12;
+    public static final int ERROR_THERE_IS_NO_CONNECTION          = 13;
+    public static final int ERROR_NOT_READED_DATA                 = 14;
+    public static final int ERROR_DRIVER_TYPE_NOT_FOUND           = 15;
 
 
     public static final String ERROR_DEVICE_NOT_FOUND_MESSAGE                   = "Device not found!";
@@ -38,6 +39,7 @@ public class Definitions {
     public static final String ERROR_SERVICE_STOP_FAILED_MESSAGE                = "Service could not stopped. Please first close connection";
     public static final String ERROR_THERE_IS_NO_CONNECTION_MESSAGE             = "There is no connection";
     public static final String ERROR_NOT_READED_DATA_MESSAGE                    = "Error reading from port";
+    public static final String ERROR_DRIVER_TYPE_NOT_FOUND_MESSAGE              = "Driver type is not defined";
 
     ///////////////////////////////////////////////////////////
 
