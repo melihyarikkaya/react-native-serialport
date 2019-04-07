@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.felhr.usbserial.UsbSerialDebugger;
 import com.google.common.primitives.UnsignedBytes;
 
 import android.hardware.usb.UsbDevice;
@@ -66,7 +67,6 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
   private static final String onDisconnectedEvent       = "onDisconnected";
   private static final String onDeviceAttachedEvent     = "onDeviceAttached";
   private static final String onDeviceDetachedEvent     = "onDeviceDetached";
-  private static final String onDeviceNotSupportedEvent = "onDeviceNotSupported";
   private static final String onServiceStarted          = "onServiceStarted";
   private static final String onServiceStopped          = "onServiceStopped";
   private static final String onReadDataFromPort        = "onReadDataFromPort";
@@ -112,7 +112,7 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
           eventEmit(onDisconnectedEvent, null);
           break;
         case ACTION_USB_NOT_SUPPORTED:
-          eventEmit(onDeviceNotSupportedEvent, null);
+          eventEmit(onErrorEvent, createError(Definitions.ERROR_DEVICE_NOT_SUPPORTED, Definitions.ERROR_DEVICE_NOT_SUPPORTED_MESSAGE));
           break;
         case ACTION_USB_NOT_OPENED:
           eventEmit(onErrorEvent, createError(Definitions.ERROR_COULD_NOT_OPEN_SERIALPORT, Definitions.ERROR_COULD_NOT_OPEN_SERIALPORT_MESSAGE));
@@ -256,7 +256,14 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
     usbManager = (UsbManager) reactContext.getSystemService(Context.USB_SERVICE);
 
     usbServiceStarted = true;
-    eventEmit(onServiceStarted, null);
+
+    //Return usb status when service is started.
+    WritableMap map = Arguments.createMap();
+
+    map.putBoolean("deviceAttached", !usbManager.getDeviceList().isEmpty());
+
+    eventEmit(onServiceStarted, map);
+
     checkAutoConnect();
   }
 

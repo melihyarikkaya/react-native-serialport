@@ -162,3 +162,15 @@ interface DefinitionsStatic {
   };
 }
 export var definitions: DefinitionsStatic;
+
+interface ActionsStatic {
+  ON_SERVICE_STARTED      : string,
+  ON_SERVICE_STOPPED      : string,
+  ON_DEVICE_ATTACHED      : string,
+  ON_DEVICE_DETACHED      : string,
+  ON_ERROR                : string,
+  ON_CONNECTED            : string,
+  ON_DISCONNECTED         : string,
+  ON_READ_DATA            : string
+}
+export var actions: ActionsStatic;

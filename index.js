@@ -46,11 +46,27 @@ const actions = {
   ON_SERVICE_STOPPED      : 'onServiceStopped',
   ON_DEVICE_ATTACHED      : 'onDeviceAttached',
   ON_DEVICE_DETACHED      : 'onDeviceDetached',
-  ON_DEVICE_NOT_SUPPORTED : 'onDeviceNotSupported',
   ON_ERROR                : 'onError',
   ON_CONNECTED            : 'onConnected',
   ON_DISCONNECTED         : 'onDisconnected',
   ON_READ_DATA            : 'onReadDataFromPort'
 };
 
-module.exports = { RNSerialport, definitions, actions };
+RNSerialport.intArrayToUtf8 = (hex) => {
+  var str = "";
+  var radix = 10;
+  for (var i = 0; i < hex.length && hex.substr(i, 2) !== "00"; i += 2) {
+    str += String.fromCharCode(parseInt(hex.substr(i, 2), radix));
+  }
+  return str;
+}
+RNSerialport.hexToUtf8 = (hex) => {
+  var str = "";
+  var radix = 16;
+  for (var i = 0; i < hex.length && hex.substr(i, 2) !== "00"; i += 2) {
+    str += String.fromCharCode(parseInt(hex.substr(i, 2), radix));
+  }
+  return str;
+}
+
+module.exports = { RNSerialport, definitions, actions};
