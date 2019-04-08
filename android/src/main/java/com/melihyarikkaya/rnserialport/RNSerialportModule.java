@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.felhr.usbserial.UsbSerialDebugger;
 import com.google.common.primitives.UnsignedBytes;
 
 import android.hardware.usb.UsbDevice;
