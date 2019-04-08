@@ -12,6 +12,11 @@ interface GetDeviceListResponseDevices {
   vendorId: number;
   productId: number;
 }
+
+interface IIsSupportedResponse{
+  status: boolean
+}
+
 type GetDeviceListResponse<T> = {
   [P in keyof T]: GetDeviceListResponseSuccess | GetDeviceListResponseError
 };
@@ -33,10 +38,10 @@ interface RNSerialportStatic {
 
   /**
    * Returns support status
-   * @param callback
-   * @returns boolean on callback method
+   * @param deviceName String
+   * @returns status boolean on Promise then method
    */
-  isSupported(deviceName : string) : Promise;
+  isSupported(deviceName : string) : Promise<IIsSupportedResponse>;
 
   //Begin setter methods
 
@@ -120,6 +125,20 @@ interface RNSerialportStatic {
    * @param data Base64 string to write
    */
   writeBase64(data: string): void;
+
+  /**
+   * Hex string convert to Utf8 string
+   * @param intArray Array
+   * @return utf8 String
+   */
+  intArrayToUtf8(intArray: Array): string
+
+  /**
+   * Hex string convert to Utf8 string
+   * @param hex String
+   * @retrun utf8 String
+   */
+  hexToUtf8(hex: string): string
 }
 export var RNSerialport: RNSerialportStatic;
 

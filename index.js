@@ -52,11 +52,11 @@ const actions = {
   ON_READ_DATA            : 'onReadDataFromPort'
 };
 
-RNSerialport.intArrayToUtf8 = (hex) => {
+RNSerialport.intArrayToUtf8 = (intArray) => {
   var str = "";
   var radix = 10;
-  for (var i = 0; i < hex.length && hex.substr(i, 2) !== "00"; i += 2) {
-    str += String.fromCharCode(parseInt(hex.substr(i, 2), radix));
+  for (var i = 0; i < intArray.length && intArray.substr(i, 2) !== "00"; i += 2) {
+    str += String.fromCharCode(parseInt(intArray.substr(i, 2), radix));
   }
   return str;
 }

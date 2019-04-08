@@ -178,6 +178,8 @@ _getDeviceList() {
 |  12  | Service could not stopped off. Please close connection first |
 |  13  | There is no connection                                       |
 |  14  | Error reading from port                                      |
+|  15  | Driver type is not defined                                   |
+|  16  | Device not supported                                         |
 
 ### ALL VOIDS
 
@@ -185,6 +187,7 @@ _getDeviceList() {
 |--------------------------------------------------|--------------------------------------------------------------------------|
 | setReturnedDataType(dataType: int)               | To set the returned data type int array or hex string                    |
 | setInterface(interface: int)                     | To set the device interface                                              |
+| setDriver(driver: string)                        | To set the driver                                                        |
 | setDataBit(dataBit: int)                         | To set the data bit                                                      |
 | setStopBit(stopBit: int)                         | To set the stop bit                                                      |
 | setParity(parity: int)                           | To set the parity                                                        |
@@ -198,6 +201,7 @@ _getDeviceList() {
 | connectDevice(deviceName: string, baudRate: int) | Used for manual connection                                               |
 | disconnect()                                     | Used to break the connection.                                            |
 | isOpen(callback: void)                           | Receives connection status                                               |
+| isSupported(deviceName: string): promise         | Check device support                                                     |
 | writeString(data: string)                        | Writes data to serial port                                               |
 | writeBase64(data: string)                        | Writes Base64 to serial port                                             |
 
