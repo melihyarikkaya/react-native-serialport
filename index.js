@@ -52,15 +52,14 @@ const actions = {
   ON_READ_DATA            : 'onReadDataFromPort'
 };
 
-RNSerialport.intArrayToUtf8 = (intArray) => {
+RNSerialport.intArrayToUtf16 = (intArray) => {
   var str = "";
-  var radix = 10;
-  for (var i = 0; i < intArray.length && intArray.substr(i, 2) !== "00"; i += 2) {
-    str += String.fromCharCode(parseInt(intArray.substr(i, 2), radix));
+  for (var i = 0; i < intArray.length; i++) {
+    str += String.fromCharCode(intArray[i]);
   }
   return str;
 }
-RNSerialport.hexToUtf8 = (hex) => {
+RNSerialport.hexToUtf16 = (hex) => {
   var str = "";
   var radix = 16;
   for (var i = 0; i < hex.length && hex.substr(i, 2) !== "00"; i += 2) {
@@ -69,4 +68,4 @@ RNSerialport.hexToUtf8 = (hex) => {
   return str;
 }
 
-module.exports = { RNSerialport, definitions, actions};
+module.exports = { RNSerialport, definitions, actions };
