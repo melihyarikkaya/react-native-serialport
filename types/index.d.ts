@@ -186,6 +186,12 @@ interface RNSerialportStatic {
   writeBase64(data: string): void;
 
   /**
+   * Writes hex string to port
+   * @param data String to write
+   */
+  writeHexString(data: string): void
+
+  /**
    * Hex string convert to Utf8 string
    * @param intArray Array
    * @return utf8 String

@@ -421,6 +421,30 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
     serialPort.write(data);
   }
 
+  @ReactMethod
+  public void writeHexString(String message) {
+    if(!usbServiceStarted){
+      eventEmit(onErrorEvent, createError(Definitions.ERROR_USB_SERVICE_NOT_STARTED, Definitions.ERROR_USB_SERVICE_NOT_STARTED_MESSAGE));
+      return;
+    }
+    if(!serialPortConnected || serialPort == null) {
+      eventEmit(onErrorEvent, createError(Definitions.ERROR_THERE_IS_NO_CONNECTION, Definitions.ERROR_THERE_IS_NO_CONNECTION_MESSAGE));
+      return;
+    }
+
+    if(message.length() < 1) {
+      return;
+    }
+
+    byte[] data = new byte[message.length() / 2];
+    for (int i = 0; i < data.length; i++) {
+      int index = i * 2;
+      int v = Integer.parseInt(message.substring(index, index + 2), 16);
+      data[i] = (byte) v;
+    }
+    serialPort.write(data);
+  }
+
   ///////////////////////////////////////////////USB SERVICE /////////////////////////////////////////////////////////
   ///////////////////////////////////////////////USB SERVICE /////////////////////////////////////////////////////////
 
