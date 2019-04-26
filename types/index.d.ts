@@ -13,10 +13,6 @@ interface GetDeviceListResponseDevices {
   productId: number;
 }
 
-interface IIsSupportedResponse{
-  status: boolean
-}
-
 type GetDeviceListResponse<T> = {
   [P in keyof T]: GetDeviceListResponseSuccess | GetDeviceListResponseError
 };
@@ -90,17 +86,16 @@ interface RNSerialportStatic {
    */
   stopUsbService(): void;
   /**
-   * @param callback
-   * @returns boolean on callback method
+   * @returns status boolean on Promise then method
    */
-  isOpen(callback: (status: boolean) => void): void;
+  isOpen(): Promise<boolean>
 
   /**
    * Returns support status
    * @param deviceName String
    * @returns status boolean on Promise then method
    */
-  isSupported(deviceName : string) : Promise<IIsSupportedResponse>;
+  isSupported(deviceName : string) : Promise<boolean>;
 
   //Begin setter methods
 

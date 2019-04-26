@@ -126,11 +126,9 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
           }
           break;
         case ACTION_USB_DETACHED:
+          eventEmit(onDeviceDetachedEvent, null);
           if(serialPortConnected) {
-            eventEmit(onDeviceDetachedEvent, null);
             stopConnection();
-          } else {
-            eventEmit(onDeviceDetachedEvent, null);
           }
           break;
         case ACTION_USB_PERMISSION :
@@ -367,9 +365,12 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
     }
     stopConnection();
   }
-
+  
   @ReactMethod
-  public void isOpen(Callback callback) { callback.invoke(serialPortConnected); }
+  public void isOpen(Promise promise) {
+    promise.resolve(serialPortConnected);
+  }
+
   @ReactMethod
   public void isSupported(String deviceName, Promise promise) {
     if(!chooseDevice(deviceName)) {
@@ -439,7 +440,14 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
     byte[] data = new byte[message.length() / 2];
     for (int i = 0; i < data.length; i++) {
       int index = i * 2;
-      int v = Integer.parseInt(message.substring(index, index + 2), 16);
+
+      String hex = message.substring(index, index + 2);
+
+      if(Definitions.hexChars.indexOf(hex.substring(0, 1)) == -1 || Definitions.hexChars.indexOf(hex.substring(1, 1)) == -1) {
+          return;
+      }
+
+      int v = Integer.parseInt(hex, 16);
       data[i] = (byte) v;
     }
     serialPort.write(data);

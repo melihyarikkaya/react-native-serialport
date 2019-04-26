@@ -47,7 +47,8 @@ public class Definitions {
     public static final int RETURNED_DATA_TYPE_INTARRAY = 1;
     public static final int RETURNED_DATA_TYPE_HEXSTRING = 2;
 
-    private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
+    public final static String hexChars = "0123456789ABCDEF";
+    private final static char[] hexArray = hexChars.toCharArray();
 
     public static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
