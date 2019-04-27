@@ -48,28 +48,28 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
     return "RNSerialport";
   }
 
-  private static final String ACTION_USB_READY = "com.felhr.connectivityservices.USB_READY";
-  private static final String ACTION_USB_ATTACHED = "android.hardware.usb.action.USB_DEVICE_ATTACHED";
-  private static final String ACTION_USB_DETACHED = "android.hardware.usb.action.USB_DEVICE_DETACHED";
-  private static final String ACTION_USB_NOT_SUPPORTED = "com.felhr.usbservice.USB_NOT_SUPPORTED";
-  private static final String ACTION_NO_USB = "com.felhr.usbservice.NO_USB";
-  private static final String ACTION_USB_PERMISSION_GRANTED = "com.felhr.usbservice.USB_PERMISSION_GRANTED";
-  private static final String ACTION_USB_PERMISSION_NOT_GRANTED = "com.felhr.usbservice.USB_PERMISSION_NOT_GRANTED";
-  private static final String ACTION_USB_DISCONNECTED = "com.felhr.usbservice.USB_DISCONNECTED";
-  private static final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
-  private static final String ACTION_USB_NOT_OPENED = "com.melihyarikkaya.rnserialport.USB_NOT_OPENED";
-  private static final String ACTION_USB_CONNECT = "com.melihyarikkaya.rnserialport.USB_CONNECT";
+  private final String ACTION_USB_READY = "com.felhr.connectivityservices.USB_READY";
+  private final String ACTION_USB_ATTACHED = "android.hardware.usb.action.USB_DEVICE_ATTACHED";
+  private final String ACTION_USB_DETACHED = "android.hardware.usb.action.USB_DEVICE_DETACHED";
+  private final String ACTION_USB_NOT_SUPPORTED = "com.felhr.usbservice.USB_NOT_SUPPORTED";
+  private final String ACTION_NO_USB = "com.felhr.usbservice.NO_USB";
+  private final String ACTION_USB_PERMISSION_GRANTED = "com.felhr.usbservice.USB_PERMISSION_GRANTED";
+  private final String ACTION_USB_PERMISSION_NOT_GRANTED = "com.felhr.usbservice.USB_PERMISSION_NOT_GRANTED";
+  private final String ACTION_USB_DISCONNECTED = "com.felhr.usbservice.USB_DISCONNECTED";
+  private final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
+  private final String ACTION_USB_NOT_OPENED = "com.melihyarikkaya.rnserialport.USB_NOT_OPENED";
+  private final String ACTION_USB_CONNECT = "com.melihyarikkaya.rnserialport.USB_CONNECT";
 
   //react-native events
-  private static final String onErrorEvent              = "onError";
-  private static final String onConnectedEvent          = "onConnected";
-  private static final String onDisconnectedEvent       = "onDisconnected";
-  private static final String onDeviceAttachedEvent     = "onDeviceAttached";
-  private static final String onDeviceDetachedEvent     = "onDeviceDetached";
-  private static final String onServiceStarted          = "onServiceStarted";
-  private static final String onServiceStopped          = "onServiceStopped";
-  private static final String onReadDataFromPort        = "onReadDataFromPort";
-  private static final String onUsbPermissionGranted    = "onUsbPermissionGranted";
+  private final String onErrorEvent              = "onError";
+  private final String onConnectedEvent          = "onConnected";
+  private final String onDisconnectedEvent       = "onDisconnected";
+  private final String onDeviceAttachedEvent     = "onDeviceAttached";
+  private final String onDeviceDetachedEvent     = "onDeviceDetached";
+  private final String onServiceStarted          = "onServiceStarted";
+  private final String onServiceStopped          = "onServiceStopped";
+  private final String onReadDataFromPort        = "onReadDataFromPort";
+  private final String onUsbPermissionGranted    = "onUsbPermissionGranted";
 
   //SUPPORTED DRIVER LIST
 
@@ -117,12 +117,9 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
           eventEmit(onErrorEvent, createError(Definitions.ERROR_COULD_NOT_OPEN_SERIALPORT, Definitions.ERROR_COULD_NOT_OPEN_SERIALPORT_MESSAGE));
           break;
         case ACTION_USB_ATTACHED:
-          if(autoConnect) {
-            if(chooseFirstDevice()) {
-              connectDevice(autoConnectDeviceName, autoConnectBaudRate);
-            }
-          } else {
-            eventEmit(onDeviceAttachedEvent, null);
+          eventEmit(onDeviceAttachedEvent, null);
+          if(autoConnect && chooseFirstDevice()) {
+            connectDevice(autoConnectDeviceName, autoConnectBaudRate);
           }
           break;
         case ACTION_USB_DETACHED:
@@ -365,11 +362,16 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
     }
     stopConnection();
   }
-  
+
   @ReactMethod
   public void isOpen(Promise promise) {
     promise.resolve(serialPortConnected);
   }
+
+ @ReactMethod
+ public void isServiceStarted(Promise promise) {
+    promise.resolve(usbServiceStarted);
+ }
 
   @ReactMethod
   public void isSupported(String deviceName, Promise promise) {

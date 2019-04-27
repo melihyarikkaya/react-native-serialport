@@ -77,19 +77,27 @@ type ReturnedDataTypes = 1 | 2;
 type Drivers = "AUTO" | "cdc" | "ch34x" | "cp210x" | "ftdi" | "pl2303";
 
 interface RNSerialportStatic {
+  
   /**
    * Starts the service and Usb listener
    */
   startUsbService(): void;
+  
   /**
    * Stops the service and Usb listener
    */
   stopUsbService(): void;
+
   /**
-   * @returns status boolean on Promise then method
+   * @returns status boolean on Promise
    */
   isOpen(): Promise<boolean>
-
+  
+  /**
+   * @returns status boolean on Promise
+   */
+  isServiceStarted(): Promise<boolean>
+  
   /**
    * Returns support status
    * @param deviceName String

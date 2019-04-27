@@ -24,6 +24,8 @@ public class Definitions {
     public static final int ERROR_NOT_READED_DATA                 = 14;
     public static final int ERROR_DRIVER_TYPE_NOT_FOUND           = 15;
     public static final int ERROR_DEVICE_NOT_SUPPORTED            = 16;
+    public static final int ERROR_SERVICE_ALREADY_STARTED         = 17;
+    public static final int ERROR_SERVICE_ALREADY_STOPPED         = 18;
 
 
     public static final String ERROR_DEVICE_NOT_FOUND_MESSAGE                   = "Device not found!";
@@ -42,6 +44,8 @@ public class Definitions {
     public static final String ERROR_NOT_READED_DATA_MESSAGE                    = "Error reading from port";
     public static final String ERROR_DRIVER_TYPE_NOT_FOUND_MESSAGE              = "Driver type is not defined";
     public static final String ERROR_DEVICE_NOT_SUPPORTED_MESSAGE               = "Device not supported";
+    public static final String ERROR_SERVICE_ALREADY_STARTED_MESSAGE            = "Usb service is already started";;
+    public static final String ERROR_SERVICE_ALREADY_STOPPED_MESSAGE            = "Usb service is already stopped";;
     ///////////////////////////////////////////////////////////
 
     public static final int RETURNED_DATA_TYPE_INTARRAY = 1;
