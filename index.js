@@ -30,6 +30,14 @@ const definitions = {
   RETURNED_DATA_TYPES: {
     INTARRAY : 1,
     HEXSTRING: 2
+  },
+  DRIVER_TYPES: {
+    AUTO    : "AUTO",
+    CDC     : "cdc",
+    CH34x   : "ch34x",
+    CP210x  : "cp210x",
+    FTDI    : "ftdi",
+    PL2303  : "pl2303"
   }
 };
 
@@ -38,11 +46,26 @@ const actions = {
   ON_SERVICE_STOPPED      : 'onServiceStopped',
   ON_DEVICE_ATTACHED      : 'onDeviceAttached',
   ON_DEVICE_DETACHED      : 'onDeviceDetached',
-  ON_DEVICE_NOT_SUPPORTED : 'onDeviceNotSupported',
   ON_ERROR                : 'onError',
   ON_CONNECTED            : 'onConnected',
   ON_DISCONNECTED         : 'onDisconnected',
   ON_READ_DATA            : 'onReadDataFromPort'
 };
+
+RNSerialport.intArrayToUtf16 = (intArray) => {
+  var str = "";
+  for (var i = 0; i < intArray.length; i++) {
+    str += String.fromCharCode(intArray[i]);
+  }
+  return str;
+}
+RNSerialport.hexToUtf16 = (hex) => {
+  var str = "";
+  var radix = 16;
+  for (var i = 0; i < hex.length && hex.substr(i, 2) !== "00"; i += 2) {
+    str += String.fromCharCode(parseInt(hex.substr(i, 2), radix));
+  }
+  return str;
+}
 
 module.exports = { RNSerialport, definitions, actions };
