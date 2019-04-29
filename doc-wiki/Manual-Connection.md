@@ -57,7 +57,7 @@ componentDidMount() {
 **Some precautions**
 
 ```javascript
-componentWillUnmount = async() => {
+componentWillUnmount = async () => {
   DeviceEventEmitter.removeAllListeners();
   const isOpen = await RNSerialport.isOpen();
   if (isOpen) {
@@ -65,7 +65,7 @@ componentWillUnmount = async() => {
     RNSerialport.disconnect();
   }
   RNSerialport.stopUsbService();
-}
+};
 ```
 
 _Installation Successfuly_
@@ -163,7 +163,7 @@ class ManualConnection extends Component {
     RNSerialport.setReturnedDataType(this.state.returnedDataType);
     RNSerialport.setAutoConnect(false);
     RNSerialport.startUsbService();
-  };
+  }
 
   stopUsbListener = async () => {
     DeviceEventEmitter.removeAllListeners();
@@ -235,18 +235,23 @@ class ManualConnection extends Component {
     }
     this.setState({ output: data });
   }
-  fillDeviceList() {
-    RNSerialport.getDeviceList(response => {
-      if (response.status) {
-        this.setState({ deviceList: response.devices });
+  fillDeviceList = async () => {
+    try {
+      const deviceList = await RNSerialport.getDeviceList();
+      if (deviceList.length > 0) {
+        this.setState({ deviceList });
       } else {
-        Alert.alert(
-          "Error from getDeviceList()",
-          response.errorCode + " " + response.errorMessage
-        );
+        this.setState({
+          deviceList: [{ name: "Device Not Found", placeholder: true }]
+        });
       }
-    });
-  }
+    } catch (err) {
+      Alert.alert(
+        "Error from getDeviceList()",
+        err.errorCode + " " + err.errorMessage
+      );
+    }
+  };
   devicePickerItems() {
     return this.state.deviceList.map((device, index) =>
       !device.placeholder ? (

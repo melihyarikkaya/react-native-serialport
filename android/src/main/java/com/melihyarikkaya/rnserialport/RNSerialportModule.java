@@ -276,9 +276,9 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void getDeviceList(Callback callback) {
+  public void getDeviceList(Promise promise) {
     if(!usbServiceStarted) {
-      callback.invoke(createError(Definitions.ERROR_USB_SERVICE_NOT_STARTED, Definitions.ERROR_USB_SERVICE_NOT_STARTED_MESSAGE));
+      promise.reject(String.valueOf(Definitions.ERROR_USB_SERVICE_NOT_STARTED), Definitions.ERROR_USB_SERVICE_NOT_STARTED_MESSAGE);
       return;
     }
 
@@ -287,7 +287,8 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
     HashMap<String, UsbDevice> devices = manager.getDeviceList();
 
     if(devices.isEmpty()) {
-      callback.invoke(createError(Definitions.ERROR_DEVICE_NOT_FOUND, Definitions.ERROR_DEVICE_NOT_FOUND_MESSAGE));
+      //promise.reject(String.valueOf(Definitions.ERROR_DEVICE_NOT_FOUND), Definitions.ERROR_DEVICE_NOT_FOUND_MESSAGE);
+      promise.resolve(Arguments.createArray());
       return;
     }
 
@@ -303,11 +304,7 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
       deviceList.pushMap(map);
     }
 
-    WritableMap map = Arguments.createMap();
-    map.putBoolean("status", true);
-    map.putArray("devices", deviceList);
-
-    callback.invoke(map);
+    promise.resolve(deviceList);
   }
 
   @ReactMethod
