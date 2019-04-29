@@ -50,13 +50,14 @@ componentDidMount() {
   RNSerialport.setReturnedDataType(definitions.RETURNED_DATA_TYPES.HEXSTRING);
   RNSerialport.setAutoConnect(false);
   RNSerialport.startUsbService();
+  //Started usb listener
 }
 ```
 
 **Some precautions**
 
 ```javascript
-componentWillUnmount() {
+componentWillUnmount = async() => {
   DeviceEventEmitter.removeAllListeners();
   const isOpen = await RNSerialport.isOpen();
   if (isOpen) {
@@ -68,6 +69,8 @@ componentWillUnmount() {
 ```
 
 _Installation Successfuly_
+
+[See for methods](https://github.com/melihyarikkaya/react-native-serialport/wiki/Methods)
 
 ### Full Example
 
@@ -117,7 +120,7 @@ class ManualConnection extends Component {
   }
 
   componentDidMount() {
-    this.startUsbService();
+    this.startUsbListener();
   }
 
   componentWillUnmount() {

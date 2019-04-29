@@ -6,6 +6,7 @@
 [disconnect](https://github.com/melihyarikkaya/react-native-serialport/wiki/Methods/#disconnect)  
 [isOpen](https://github.com/melihyarikkaya/react-native-serialport/wiki/Methods/#isOpen)  
 [isSupported](https://github.com/melihyarikkaya/react-native-serialport/wiki/Methods/#isSupported)  
+[isServiceStarted](https://github.com/melihyarikkaya/react-native-serialport/wiki/Methods/#isServiceStarted)  
 [writeString](https://github.com/melihyarikkaya/react-native-serialport/wiki/Methods/#writeString)  
 [writeBase64](https://github.com/melihyarikkaya/react-native-serialport/wiki/Methods/#writeBase64)  
 [writeHexString](https://github.com/melihyarikkaya/react-native-serialport/wiki/Methods/#writeHexString)
@@ -101,18 +102,32 @@ RNSerialport.disconnect()
 
  Params: 
 
-|Name|TYPE|REQUIRED|
-| - | - | - |
-| callback | function | yes for call  |
+_No param_
 
 ```javascript
-RNSerialport.isOpen((status /* boolean */) => {
-  if(status) {
+//1st way
+try {
+  const isOpen = await RNSerialport.isOpen();
+
+  if(isOpen)
+    console.log("Is open?", "yes");
+  else
+    console.log("Is open?", "no");
+
+} catch(err) {
+  console.log(err);
+}
+
+//2st way
+RNSerialport.isOpen().then(isOpen => {
+  if(isOpen) {
     console.log("Is open?", "yes");
   } else {
-    console.log("Is open?", "no");
+    console.log("Is oprn?", "no");
   }
-})
+}).catch(err => {
+  console.log(err);
+});
 ```
 
 ***
@@ -132,7 +147,7 @@ try {
   const isSupported = await RNSerialport.isSupported("deviceName");
 
   if(isSupported)
-    console.log("Is supported?", "yes")
+    console.log("Is supported?", "yes");
   else
     console.log("Is supported?", "no");
 
@@ -141,11 +156,44 @@ try {
 }
 
 //2st way
-RNSerialport.isSupported("deviceName").then(status => {
+RNSerialport.isSupported("deviceName").then(isSupported => {
   if(isSupported) {
     console.log("Is supported?", "yes");
   } else {
     console.log("Is supported?", "no");
+  }
+}).catch(err => {
+  console.log(err);
+});
+```
+
+***
+
+### isServiceStarted
+ _Returns service status_
+
+ No param
+
+```javascript
+//1st way
+try {
+  const isServiceStarted = await RNSerialport.isServiceStarted();
+
+  if(isServiceStarted)
+    console.log("Is ServiceStarted?", "yes");
+  else
+    console.log("Is ServiceStarted?", "no");
+
+} catch(err) {
+
+}
+
+//2st way
+RNSerialport.isServiceStarted().then(isServiceStarted => {
+  if(isServiceStarted) {
+    console.log("Is service started?", "yes");
+  } else {
+    console.log("Is service started?", "no");
   }
 }).catch(err => {
   console.log(err);
@@ -227,6 +275,9 @@ RNSerialport.setReturnedDataType(
 
 ### setDriver
  _Changes the driver_
+
+[Why it is necessary? Using createUsbSerialDevice method specifying the driver](https://github.com/felHR85/UsbSerial/wiki/3.-Create-UsbSerialDevice#using-createusbserialdevice-method-specifying-the-driver)
+
 > Default: AUTO
 
 Params:
@@ -363,7 +414,7 @@ RNSerialport.setFlowControl(definitions.FLOW_CONTROLS.FLOW_CONTROL_OFF)
 
 ### loadDefaultConnectionSetting
  _Loads the default settings_
-> Defaults:
+> Defaults:  
 > DATA_BIT: DATA_BITS_8  
 > STOP_BIT: STOP_BITS_1  
 > PARITY: PARITY_NONE  

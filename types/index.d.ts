@@ -1,16 +1,29 @@
-interface GetDeviceListResponseSuccess {
+export interface GetDeviceListResponseSuccess {
   status: boolean;
   devices: Array<GetDeviceListResponseDevices>;
 }
-interface GetDeviceListResponseError {
+export interface GetDeviceListResponseError {
   status: boolean;
   errorCode: number;
   errorMessage: string;
 }
-interface GetDeviceListResponseDevices {
+export interface GetDeviceListResponseDevices {
   name: string;
   vendorId: number;
   productId: number;
+}
+
+export interface IOnReadData {
+  pyload: string | Array<number>
+}
+export interface IOnError {
+  status: boolean;
+  errorCode: number;
+  errorMessage: string;
+  exceptionErrorMessage?: string;
+}
+export interface IOnServiceStarted {
+  deviceAttached: boolean
 }
 
 type GetDeviceListResponse<T> = {
