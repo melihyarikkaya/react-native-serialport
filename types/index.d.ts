@@ -7,7 +7,7 @@ export interface IDevice {
 export type Devices = Array<IDevice> | null;
 
 export interface IOnReadData {
-  pyload: string | Array<number>
+  payload: string | Array<number>
 }
 export interface IOnError {
   status: boolean;
