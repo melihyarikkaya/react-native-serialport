@@ -17,6 +17,7 @@ import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.bridge.WritableNativeArray;
+import com.facebook.react.bridge.ReadableArray;
 
 import android.util.Base64;
 
@@ -390,6 +391,17 @@ public class RNSerialportModule extends ReactContextBaseJavaModule {
       return;
     }
     serialPort.write(bytes);
+  }
+
+  @ReactMethod
+  public void writeIntArray(ReadableArray intArray) {
+    byte[] bytes = new byte[intArray.size()];
+
+    for (int i=0; i<intArray.size(); i++) {
+      bytes[i] = (byte)intArray.getInt(i);
+    }
+
+    writeBytes(bytes);
   }
 
   @ReactMethod

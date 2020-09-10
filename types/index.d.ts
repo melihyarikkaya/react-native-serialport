@@ -225,6 +225,14 @@ interface RNSerialportStatic {
   disconnect(): void;
 
   /**
+   * Writes number array to port
+   *
+   * @param {Array<number>} data
+   * @memberof RNSerialportStatic
+   */
+  writeIntArray(intArray: Array<number>): void;
+
+  /**
    * Writes string to port
    *
    * @param {string} data
