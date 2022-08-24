@@ -1,6 +1,6 @@
 {
   "name": "react-native-serialport",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "This library is for usb serial port communication on android platforms",
   "main": "index.js",
   "scripts": {
@@ -12,9 +12,10 @@
     "react native usb serialport communication"
   ],
   "author": "Melih YARIKKAYA",
+  "contributors": ["Vicary A. <vicary.archangel@member.mensa.org>"],
   "license": "MIT",
   "peerDependencies": {
-    "react-native": "^0.59.0"
+    "react-native": "^0.68 || ^0.69"
   },
   "repository": {
     "type": "git",
