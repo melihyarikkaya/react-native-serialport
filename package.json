@@ -12,10 +12,12 @@
     "react native usb serialport communication"
   ],
   "author": "Melih YARIKKAYA",
-  "contributors": ["Vicary A. <vicary.archangel@member.mensa.org>"],
+  "contributors": [
+    "Vicary A. <vicary.archangel@member.mensa.org>"
+  ],
   "license": "MIT",
   "peerDependencies": {
-    "react-native": "^0.68 || ^0.69"
+    "react-native": "^0.67 || ^0.68 || ^0.69"
   },
   "repository": {
     "type": "git",
