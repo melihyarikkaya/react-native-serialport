@@ -32,7 +32,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.google.guava:guava:31.0.1-jre'
+    implementation 'com.google.guava:guava:31.1-android'
     implementation 'com.facebook.react:react-native:+'
     implementation(name: 'usbserial-6.0.5-release', ext: 'aar')
 }
